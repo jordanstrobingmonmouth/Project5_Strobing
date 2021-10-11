@@ -3,4 +3,4 @@ project(Project5_Strobing)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Project5_Strobing Project4.cpp)
+add_executable(Project5_Strobing Project5.cpp)
