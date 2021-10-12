@@ -9,7 +9,6 @@
 
 #include <iostream>
 #include <string>
-#include <iomanip>
 using namespace std;
 
 void input(double& temp, int& speed, string& direction, double tempArr[], int speedArr[], string directionArr[], int& counter){
@@ -61,7 +60,7 @@ void printRecent(const string name, double temp, int speed, string direction) {
     cout << "Wind speed: " << speed << "\tDirection: " << direction << endl;
 }
 
-void printAll(string name, double tempArr[], int speedArr[], string directionArr[], int counter) {
+void printAll(const string name, double tempArr[], int speedArr[], string directionArr[], int counter) {
     if (counter > 5) {
 
         for (int i = 4; i >= 0; i--) {
