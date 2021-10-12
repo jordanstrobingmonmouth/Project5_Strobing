@@ -12,7 +12,7 @@
 #include <iomanip>
 using namespace std;
 
-void input(const string name, double& temp, int& speed, string& direction, string outputs[], int& counter){
+void input(double& temp, int& speed, string& direction, double tempArr[], int speedArr[], string directionArr[], int& counter){
     counter++;
     cout << "What is the current temperature? " << endl;
     cin >> temp;
@@ -38,16 +38,20 @@ void input(const string name, double& temp, int& speed, string& direction, strin
 
     if (counter > 5) {
         for (int i = 0; i < 4; i++) {
-            outputs[i] = outputs[i + 1];
+            tempArr[i] = tempArr[i + 1];
+            speedArr[i] = speedArr[i + 1];
+            directionArr[i] = directionArr[i + 1];
         }
-        outputs[4] = "The " + name + " Weather Station\n" +
-                     "Temperature: " + to_string(temp) + "\n" +
-                     "Wind speed: " + to_string(speed) + "\tDirection: " + direction + "\n";
+
+        tempArr[4] = temp;
+        speedArr[4] = speed;
+        directionArr[4] = direction;
+
     }
     else if (counter <= 5) {
-        outputs[counter - 1] = "The " + name + " Weather Station\n" +
-                               "Temperature: " + to_string(temp) + "\n" +
-                               "Wind speed: " + to_string(speed) + "\tDirection: " + direction + "\n";
+        tempArr[counter-1] = temp;
+        speedArr[counter-1] = speed;
+        directionArr[counter-1] = direction;
     }
 }
 
@@ -57,17 +61,21 @@ void printRecent(const string name, double temp, int speed, string direction) {
     cout << "Wind speed: " << speed << "\tDirection: " << direction << endl;
 }
 
-void printAll(string outputs[], int counter) {
+void printAll(string name, double tempArr[], int speedArr[], string directionArr[], int counter) {
     if (counter > 5) {
 
         for (int i = 4; i >= 0; i--) {
-            cout << fixed << setprecision(1) << outputs[i] << endl;
+            cout << "The " << name << " Weather Station" << endl;
+            cout << "Temperature: " << tempArr[i] << endl;
+            cout << "Wind speed: " << speedArr[i] << "\tDirection: " << directionArr[i] << "\n" << endl;
         }
     }
     else if (counter <= 5) {
 
         for (int i = counter - 1; i >= 0; i--) {
-            cout << fixed << setprecision(1) << outputs[i]  << endl;
+            cout << "The " << name << " Weather Station" << endl;
+            cout << "Temperature: " << tempArr[i] << endl;
+            cout << "Wind speed: " << speedArr[i] << "\tDirection: " << directionArr[i] << "\n" << endl;
         }
     }
 }
@@ -85,7 +93,7 @@ void invalid() {
     }
 }
 
-void display(string name, double temp, int speed, string direction, string outputs[], int counter) {
+void display(string name, double temp, int speed, string direction, double tempArr[], int speedArr[], string directionArr[], int counter) {
     bool canPrint = false;
 
     bool inMenu = true;
@@ -98,7 +106,7 @@ void display(string name, double temp, int speed, string direction, string outpu
         int menuInput;
         cin >> menuInput;
         if (menuInput == 1) {
-            input(name, temp, speed, direction, outputs, counter);
+            input(temp, speed, direction, tempArr, speedArr, directionArr, counter);
             canPrint = true;
         }
         else if (menuInput == 2) {
@@ -114,7 +122,7 @@ void display(string name, double temp, int speed, string direction, string outpu
                 printRecent(name, temp, speed, direction);
             }
             else if (menuInput == 2) {
-                printAll(outputs, counter);
+                printAll(name, tempArr, speedArr, directionArr, counter);
             } else {
                 invalid();
             }
@@ -134,12 +142,14 @@ void display(string name, double temp, int speed, string direction, string outpu
         string direction;
         int counter = 0;
 
-        string outputs[5];
+        double tempArr[5];
+        int speedArr[5];
+        string directionArr[5];
 
 
         cout << "What is the name of the weather station? ";
         getline(cin, name);
 
-        display(name, temp, speed, direction, outputs, counter);
+        display(name, temp, speed, direction, tempArr, speedArr, directionArr, counter);
         return 0;
     }
