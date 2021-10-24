@@ -136,8 +136,8 @@ void display(string name, double temp, int speed, string direction, double tempA
 
     int main() {
         string name = "";
-        double temp = 0;
-        int speed = 0;
+        double temp = -1000;
+        int speed = -1000;
         string direction = "";
         int counter = 0;
 
