@@ -92,7 +92,8 @@ void invalid() {
     }
 }
 
-void display(string name, double temp, int speed, string direction, double tempArr[], int speedArr[], string directionArr[], int counter) {
+void display(string name, double &temp, int &speed, string &direction, double tempArr[], int speedArr[], string directionArr[],
+             int &counter) {
     bool canPrint = false;
 
     bool inMenu = true;
