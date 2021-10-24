@@ -135,10 +135,10 @@ void display(string name, double temp, int speed, string direction, double tempA
 }
 
     int main() {
-        string name;
-        double temp;
-        int speed;
-        string direction;
+        string name = "";
+        double temp = 0;
+        int speed = 0;
+        string direction = "";
         int counter = 0;
 
         double tempArr[5];
